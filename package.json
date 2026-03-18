@@ -11,7 +11,7 @@
     "@wankmi/wankmi": "latest",
     "@solana/web3.js": "^1.95.3",
     "@solana/spl-token": "^0.4.6",
-    "next": "14.2.0",
+    "next": "latest",
     "react": "^18",
     "react-dom": "^18",
     "bs58": "^5.0.0"
