@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080808;
+  --surface: #0f0f0f;
+  --surface-2: #141414;
+  --border: #1c1c1c;
+  --border-2: #242424;
+  --dim: #333;
+  --muted: #555;
+  --subtle: #888;
+  --text: #d8d8d8;
+  --bright: #f0f0f0;
+  --green: #3ddc84;
+  --green-dim: rgba(61,220,132,0.1);
+  --green-border: rgba(61,220,132,0.2);
+  --yellow: #f5c542;
+  --yellow-dim: rgba(245,197,66,0.08);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.08);
+  --blue: #7dd3fc;
+  --purple: #c084fc;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+
+/* ── Layout ── */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  min-width: 200px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  padding: 40px 48px;
+  max-width: 800px;
+}
+
+/* ── Typography ── */
+.hook-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--bright);
+  letter-spacing: -0.02em;
+}
+
+.hook-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 6px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 24px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-row:last-child { border-bottom: none; }
+
+.card-key {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.card-val {
+  font-size: 11px;
+  color: var(--text);
+  text-align: right;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Inputs ── */
+.input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus { border-color: var(--border-2); }
+.input::placeholder { color: var(--dim); }
+.input:disabled { opacity: 0.4; cursor: not-allowed; }
+
+textarea.input { resize: vertical; min-height: 80px; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--bright);
+  color: #080808;
+}
+.btn-primary:hover { background: #fff; }
+.btn-primary:disabled {
+  background: var(--surface-2);
+  color: var(--dim);
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { border-color: var(--border-2); color: var(--text); }
+.btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-danger {
+  background: transparent;
+  color: var(--red);
+  border: 1px solid rgba(248,113,113,0.2);
+}
+.btn-danger:hover { background: var(--red-dim); }
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+.badge-green {
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid var(--green-border);
+}
+
+.badge-yellow {
+  background: var(--yellow-dim);
+  color: var(--yellow);
+  border: 1px solid rgba(245,197,66,0.2);
+}
+
+.badge-dim {
+  background: rgba(255,255,255,0.03);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.badge-red {
+  background: var(--red-dim);
+  color: var(--red);
+  border: 1px solid rgba(248,113,113,0.2);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ── Code blocks ── */
+.code {
+  background: #050505;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-size: 11.5px;
+  line-height: 1.8;
+  overflow-x: auto;
+  white-space: pre;
+  position: relative;
+}
+
+.t-keyword { color: var(--purple); }
+.t-fn      { color: var(--blue); }
+.t-string  { color: var(--green); }
+.t-comment { color: var(--dim); font-style: italic; }
+.t-prop    { color: var(--text); }
+.t-bool    { color: var(--yellow); }
+
+/* ── Spinner ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 12px; height: 12px;
+  border: 1.5px solid var(--border-2);
+  border-top-color: var(--muted);
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.3s ease forwards; }
+
+/* ── Error / success boxes ── */
+.error-box {
+  background: var(--red-dim);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-radius: 5px;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--red);
+  line-height: 1.6;
+}
+
+.success-box {
+  background: var(--green-dim);
+  border: 1px solid var(--green-border);
+  border-radius: 5px;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--green);
+  line-height: 1.6;
+}
+
+/* ── Table ── */
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+}
+.table td {
+  padding: 10px 16px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.table tr:last-child td { border-bottom: none; }
+
+/* ── Wallet list item ── */
+.wallet-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.12s;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text);
+}
+.wallet-btn:hover { border-color: var(--border-2); background: var(--surface); }
+.wallet-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.wallet-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--muted);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.wallet-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Status pipeline ── */
+.pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 16px 0;
+}
+
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.05em;
+}
+
+.pipeline-step.active { color: var(--text); }
+.pipeline-step.done { color: var(--green); }
+
+.pipeline-arrow {
+  margin: 0 8px;
+  color: var(--dim);
+  font-size: 10px;
+}
+
+/* ── Copy button ── */
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--dim);
+  font-size: 10px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.12s;
+}
+.copy-btn:hover { color: var(--text); border-color: var(--border-2); }
+.copy-btn.copied { color: var(--green); border-color: var(--green-border); }
