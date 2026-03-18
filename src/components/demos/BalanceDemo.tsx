@@ -103,7 +103,7 @@ export function BalanceDemo() {
                   { k: 'balance.formatted', v: balance.formatted },
                   { k: 'balance.sol', v: balance.sol.toString() },
                   { k: 'balance.lamports', v: balance.lamports.toString() + 'n' },
-                  { k: 'address', v: targetAddress.toBase58().slice(0, 16) + '...' },
+                  { k: 'address', v: targetAddress?.toBase58().slice(0, 16) + '...' },
                 ].map(({ k, v }) => (
                   <div className="card-row" key={k}>
                     <span className="card-key">{k}</span>
